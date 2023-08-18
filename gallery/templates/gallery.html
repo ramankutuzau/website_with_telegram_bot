@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<main id="main" data-aos="fade" data-aos-delay="1500" style="margin-top:100px;">
+
+    <!-- ======= End Page Header ======= -->
+    <div class="page-header d-flex align-items-center">
+        <div class="container position-relative">
+            <div class="row d-flex justify-content-center">
+                <div class="col-lg-6 text-center">
+                    <h2>Фотогалерея</h2>
+                    <p>Каждая татуировка - это уникальное произведение искусства, которое я создаю в соответствии с
+                        желаниями и предпочтениями моих клиентов. В моей галерее вы найдете разнообразные стили и
+                        техники, которые я владею, от реалистичных портретов до абстрактных композиций.</p>
+
+                    <a class="cta-btn" id="instagram-button_1" href="">Написать в Instagram</a>
+
+                </div>
+            </div>
+        </div>
+    </div><!-- End Page Header -->
+
+    <!-- ======= Gallery Section ======= -->
+    <section id="gallery" class="gallery">
+        <div class="container-fluid">
+
+            <div class="row gy-4 justify-content-center">
+                {% for post in posts %}
+
+                <div class="col-xl-3 col-lg-4 col-md-6 card" style="background-color:black">
+                    <div class="gallery-item h-100">
+                        <img src="{{ post.image.url }}" class="img-fluid" alt="">
+                        <div class="gallery-links d-flex align-items-center justify-content-center">
+                            <a href="{{ post.image.url }} " title="&hearts; {{ post.likes_count }} " class="glightbox preview-link"><i
+                                    class="bi bi-arrows-angle-expand"></i></a>
+                            <a href="{{ post.post_url }}" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                        </div>
+                    </div>
+                    <a href="{{ post.post_url }}" class="details-link">
+                        <p style="margin:0px;margin-top:5px"> &hearts;  <span style="color:white"> {{ post.likes_count }} Нравится</span></p>
+                        <p style="font-size:14px;color:white">{{ post.publish_date|date:"d.m.Y"}}</p>
+                    </a>
+
+
+                </div><!-- End Gallery Item -->
+                {% endfor %}
+            </div>
+
+        </div>
+    </section><!-- End Gallery Section -->
+
+</main><!-- End #main -->
+
+<script>
+ function handleButtonClick(buttonId, redirectUrl, buttonName) {
+  var button = document.getElementById(buttonId);
+  button.addEventListener("click", function(event) {
+    event.preventDefault();
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "/send-instagram/");
+    xhr.setRequestHeader("Content-Type", "application/json");
+    var data = { button_name: buttonName }
+    xhr.send(JSON.stringify(data));
+
+    window.open(redirectUrl);
+  });
+}
+
+// Пример использования
+handleButtonClick("instagram-button_1", "https://www.instagram.com/anastasiiadekola/","Gallery button");
+handleButtonClick("instagram-button_3", "https://www.instagram.com/anastasiiadekola/","Headers button");
+
+ </script>
+{% endblock %}

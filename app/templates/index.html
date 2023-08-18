@@ -1,0 +1,141 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<section id="hero" class="hero d-flex flex-column justify-content-center align-items-center" data-aos="fade"
+         data-aos-delay="1500">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 text-center">
+                <h2><span>Анастасия Декола</span> мастер художественной татуировки</h2>
+                <!-- <p>Blanditiis praesentium aliquam illum tempore incidunt debitis dolorem magni est deserunt sed qui libero. Qui voluptas amet.</p> -->
+                <button class="btn-get-started" id="instagram-button_1" data-button-name="instagram main - 1">Записаться к мастеру</button>
+
+            </div>
+        </div>
+    </div>
+</section><!-- End Hero Section -->
+
+<!-- ======= Testimonials Section ======= -->
+<section id="testimonials" class="testimonials">
+    <div class="container">
+
+        <div class="section-header">
+            <h2>Мои работы</h2>
+            <p>Фотогалерея</p>
+        </div>
+
+        <div class="slides-3 swiper">
+            <div class="swiper-wrapper">
+                {% for project in projects %}
+                <div class="swiper-slide">
+                    <div class="testimonial-item" style="position:relative; width:auto;max-height:500px">
+                        <img src="{{ project.image.url }}" alt="{{ project.created_at }}" style="padding-top:5px;max-height:450px">
+                        <a style="margin-left:0px; margin-top:5px;" id="instagram-redirect"
+                           href="https://www.instagram.com/anastasiiadekola/">@anastasiadekola
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+
+    </div>
+</section><!-- End Testimonials Section -->
+
+<main id="main" data-aos="fade" data-aos-delay="500" style="margin-top:100px;">
+    <!-- ======= End Page Header ======= -->
+    <div class="page-header d-flex align-items-center">
+        <div class="container position-relative">
+            <div class="row d-flex justify-content-center">
+                <div class="col-lg-6 text-center">
+                    <h2>Тату мастер</h2>
+                    <p>Татуировки всех стилей и направлений</p>
+
+
+                    <button class="cta-btn" id="instagram-button_2" data-button-name="instagram main - 2">Записаться
+                        к мастеру</button>
+
+                </div>
+            </div>
+        </div>
+    </div><!-- End Page Header -->
+
+    <!-- ======= Services Section ======= -->
+    <section id="services" class="services">
+        <div class="container">
+
+            <div class="row gy-4">
+
+                <div class="col-xl-3 col-md-6 d-flex">
+                    <div class="service-item position-relative">
+                        <i class="bi bi-pencil"></i>
+                        <h4><div class="stretched-link">Разработка индивидуального эскиза татуировки</div></h4>
+                        <p>Помогу вам с выбором стиля татуировки, ее местом расположения на теле, размером и другими
+                            аспектами, которые могут быть полезны при разработке тату-эскиза. </p>
+                    </div>
+                </div><!-- End Service Item -->
+
+                <div class="col-xl-3 col-md-6 d-flex">
+                    <div class="service-item position-relative">
+                        <i class="bi bi-building"></i>
+                        <h4><div class="stretched-link">Тату в студии</div></h4>
+                        <p>Наша студия предоставляет клиентам качественный сервис и гарантирует безопасносную процедуру.
+                            Все инструменты и оборудование соответствуют высоким стандартам гигиены и безопасности.</p>
+                    </div>
+                </div><!-- End Service Item -->
+
+
+                <div class="col-xl-3 col-md-6 d-flex">
+                    <div class="service-item position-relative">
+                        <i class="bi bi-bookmark-check-fill"></i>
+                        <h4><div  class="stretched-link">Опыт работы</div></h4>
+                        <p>У меня более трёх лет опыта работы в тату-индустрии, обеспечиваю клиентам безопасную и
+                            качественную процедуру. Я работаю со многими стилями татуировки и всегда стремлюсь к
+                            совершенству в моей работе.</p>
+                    </div>
+                </div><!-- End Service Item -->
+
+
+                <div class="col-xl-3 col-md-6 d-flex">
+                    <div class="service-item position-relative">
+                        <i class="bi bi-pin-angle"></i>
+                        <h4><div class="stretched-link">Стили</div></h4>
+                        <p>Работаю в стилях: Neotrad, Blackwork, Oldschool, Graphic, Greywash, Japan и др.</p>
+                    </div>
+                </div><!-- End Service Item -->
+
+            </div>
+
+        </div>
+    </section><!-- End Services Section -->
+
+</main><!-- End #main -->
+
+<script>
+ function handleButtonClick(buttonId, redirectUrl, buttonName) {
+  var button = document.getElementById(buttonId);
+  button.addEventListener("click", function(event) {
+    event.preventDefault();
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "/send-instagram/");
+    xhr.setRequestHeader("Content-Type", "application/json");
+    var data = { button_name: buttonName }
+    xhr.send(JSON.stringify(data));
+
+    window.open(redirectUrl);
+  });
+}
+
+// Пример использования
+handleButtonClick("instagram-button_1", "https://www.instagram.com/anastasiiadekola/","Main page first button");
+handleButtonClick("instagram-button_2", "https://www.instagram.com/anastasiiadekola/","Main page second button");
+handleButtonClick("instagram-button_3", "https://www.instagram.com/anastasiiadekola/","Headers button");
+
+ </script>
+{% endblock content %}
+
+

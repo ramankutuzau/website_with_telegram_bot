@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block content %}
+<main id="main" style=" margin-top:100px;">
+
+
+    <!-- ======= Blog Details Section ======= -->
+    <section id="blog" class="blog">
+        <div class="container" data-aos="fade-up">
+
+            <div class="row g-5">
+
+                <div class="col-lg-8" data-aos="fade-up" data-aos-delay="200">
+
+                    <article class="blog-details">
+
+                        <div class="post-img col-lg-8 justify-content-center d-flex">
+                            <img src="{{ post.image.url }}" alt="" class="img-fluid">
+                        </div>
+
+                        <h2 class="title mt-4" style="color:red">{{ post.title }}</h2>
+
+                        <div class="meta-top">
+                            <i class="bi bi-clock"></i>
+                            <time>{{ post.created_at|date:"d.m.Y"}}</time>
+                        </div><!-- End meta top -->
+
+                        <div class="content">
+                            <p>
+                                {{ post.text|safe }}
+                            </p>
+
+                        </div><!-- End post content -->
+
+                    </article><!-- End blog post -->
+
+
+                </div>
+
+             {% include 'includes/recent_posts.html' %}
+
+            </div>
+
+        </div>
+    </section><!-- End Blog Details Section -->
+
+</main><!-- End #main -->
+{% endblock content %}

@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<main id="main" style="margin-top:100px;">
+
+    <!-- ======= Breadcrumbs ======= -->
+
+    <!-- ======= Blog Section ======= -->
+    <section id="blog" class="blog">
+        <div class="container" data-aos="fade-up">
+
+            <div class="row g-5">
+
+                <div class="col-lg-8" data-aos="fade-up" data-aos-delay="200">
+
+                    <div class="row gy-5 posts-list">
+                        {% for post in post_list %}
+
+                        <div class="col-lg-6">
+                            <article class="d-flex flex-column">
+
+                                <div class="post-img">
+                                    <img src="{{ post.image.url }}" alt="" class="img-fluid">
+                                </div>
+
+                                <h2 class="title mt-2">
+                                    <a href="{{ post.category }}/{{ post.slug }}">{{ post.title|slice:":65" }}...</a>
+                                </h2>
+
+                                <div class="meta-top">
+                                    <i class="bi bi-clock"></i>
+                                    <time>{{ post.created_at|date:"d.m.Y"}}</time>
+                                </div>
+
+                                <div class="content">
+                                    <p>
+                                        {{ post.text|slice:":125"|safe }} ...
+                                    </p>
+                                </div>
+
+                                <div class="read-more mt-auto align-self-end">
+                                    <a href="{{ post.category }}/{{ post.slug }}">Читать <i
+                                            class="bi bi-arrow-right"></i></a>
+                                </div>
+
+                            </article>
+                        </div>
+
+                        {% endfor %}
+
+
+                    </div><!-- End blog posts list -->
+
+                </div>
+
+             {% include 'includes/recent_posts.html' %}
+
+            </div>
+
+        </div>
+    </section><!-- End Blog Section -->
+
+</main><!-- End #main -->
+{% endblock content %}

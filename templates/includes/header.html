@@ -1,0 +1,28 @@
+{% load static %}
+<header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid d-flex align-items-center justify-content-between">
+
+      <a href="/" class="logo d-flex align-items-center  me-auto me-lg-0">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <!-- <img src="assets/img/logo.png" alt=""> -->
+        <img src="{% static 'assets/logo.jpg' %}" alt="">
+        <h1>Тату мастер</h1>
+      </a>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a href="/" class="active">Главная</a></li>
+          <li><a href="/blog/">Блог</a></li>
+          <li><a href="/gallery/">Фотогалерия</a></li>
+        </ul>
+      </nav><!-- .navbar -->
+
+      <div class="header-social-links">
+        <a href="" class="instagram" id="instagram-button_3"><i class="bi bi-instagram"></i></a>
+        <a href="tel:+375336643345" class="instagram"><i class="bi bi-telephone-forward"></i></a>
+      </div>
+      <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+      <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+
+    </div>
+  </header><!-- End Header -->
